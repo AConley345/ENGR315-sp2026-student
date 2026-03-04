@@ -11,9 +11,31 @@ def my_pi(target_error):
 
     ### YOUR CODE HERE ###
 
-    # change this so an actual value is returned
-    return 0
+    a = 1
+    b = 1/math.sqrt(2)
+    t = 1/4
+    p = 1
 
+    for i in range(1, 11):
+        """
+        Step 2: Update each variable based upon the algorithm. Take care to ensure
+        the order of operations and dependencies among calculations is respected. You
+        may wish to create new "temporary" variables to hold intermediate results
+        """
+     ### YOUR CODE HERE ###
+        a2 = (a + b)/2
+        b2 = math.sqrt(a * b)
+        t2 = t - p * (a - a2) ** 2
+        p2 = (2 * p)
+
+    #updated variables
+        a = a2
+        b = b2
+        t = t2
+        p = p2
+    # change this so an actual value is returned
+    pi_estimate = ((a+b) ** 2) / (4*t)
+    return pi_estimate
 
 
 

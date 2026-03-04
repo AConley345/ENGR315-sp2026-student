@@ -19,10 +19,13 @@ def dot_product(a,b):
     """
 
     ### YOUR CODE HERE ###
+    if len(a) != len(b):
+        return ValueError("These vectors must be the same length")
+    
 
 
     ### CHANGE THIS RETURN VALUE. IT IS HERE SO THE CODE DOES NOT ERROR
-    return None
+    return sum(x * y for x, y in zip(a, b))
 
 """
 Step 1: Generate two "vectors" of equal length but full of random values

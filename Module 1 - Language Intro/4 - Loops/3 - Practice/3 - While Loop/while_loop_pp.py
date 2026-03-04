@@ -15,9 +15,10 @@ while a != 5:
 # this loop is going to multiply the variable x by 2 3 times
 b = 5
 x = 0
-while x != 0:
+while x != 3:
     b = b * 2
     x = x + 1
+print(x)
 
 # now, try and write the body of a while loop that should add a variable to itself 5 times
 # when writing the code delete "break" - this is to prevent an infinite loop

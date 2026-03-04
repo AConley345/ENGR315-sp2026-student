@@ -18,10 +18,14 @@ for multiple in list:
 words = ["cat", "hat", "bat", "rat"]
 increment = 0
 for word in words:
-    increment = 0
+    increment += 1
+print(increment)
 
 # now, write your own for loop that
 # adds up the contents of a given list in a variable "total".
 # hint: you will need to add "num" to "total"
 numbers = [4, 9, 26, 3]
 total = 0
+for num in numbers:
+    total += num
+    print(total)

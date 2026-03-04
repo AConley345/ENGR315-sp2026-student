@@ -16,14 +16,25 @@ list_average = -1
 
 
 # First Loop Here:
+list_max = list_one[0]
 
+for num in list_one:
+    if num > list_max:
+        list_max = num
 
 # Second Loop Here:
-
+list_min = list_one[0]
+for num in list_one:
+    if num < list_min:
+        list_min = num
 
 # Third Loop Here:
+total = 0
 
+for num in list_one:
+    total += num
 
+list_average = total / len(list_one)
 
 
 
