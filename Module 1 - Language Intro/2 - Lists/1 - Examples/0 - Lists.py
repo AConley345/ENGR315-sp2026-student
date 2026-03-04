@@ -28,7 +28,7 @@ print(first_list)
 
 # As you can see, the number 5 was added to the list.
 # You can also add an element to a specific spot using insert.
-first_list.insert(0, 0)
+first_list.insert(0,0)
 print(first_list)
 
 # From this you can see that a 0 was added to the beginning of the list!

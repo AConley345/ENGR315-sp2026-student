@@ -13,10 +13,21 @@ Note that Elon's capital will be $33B.
 """
 
 ### all your code below ###
+Elons_money = 33e9 #Elon's share of the money 33B
+ten_year_rate = 3.96 #percent
+twenty_year_rate = 4.32 #percent
+ten_years = 10 #10 year increment
+twenty_years = 20 #20 year increment
 
+import math
 
 # final answer for 10-year
-ten_year_final = None
+
+ten_year_final = (math.pow(((ten_year_rate/100)+1),ten_years)*Elons_money)
+
+print(ten_year_final)
 
 # final answer for 20-year
-twenty_year_final = None
+twenty_year_final = (Elons_money*math.pow(((twenty_year_rate/100)+1),twenty_years))
+
+print(twenty_year_final)
