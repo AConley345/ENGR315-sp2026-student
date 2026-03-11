@@ -65,9 +65,10 @@ def first_question(data):
     # When was the first positive COVID case in Harrisonburg?
     :return:
     """
-
-    # your code here
-    return
+    data_Harrisonburg = date[:]
+    data_Rockingham = date[:]
+    
+    return data_Harrisonburg, data_Rockingham
 
 def second_question(data):
     """
@@ -92,16 +93,16 @@ def third_question(data):
     return
 
 if __name__ == "__main__":
-    data = parse_nyt_data('us-counties.csv')
+    data = parse_nyt_data('C:\\Users\\austi\\OneDrive\\Documents\\GitHub\\ENGR315-sp2026-student\\Exams\Assignment 1 - COVID Data\\us-counties.csv')
 
     for (date,county, state, fips, cases, deaths) in data:
-        print('On ', date, ' in ', county, ' ', state, ' there were ', cases, ' cases and ', deaths, ' deaths')
+        #print('On ', date, ' in ', county, ' ', state, ' there were ', cases, ' cases and ', deaths, ' deaths')
 
 
     # write code to address the following question: Use print() to display your responses.
     # When was the first positive COVID case in Rockingham County?
     # When was the first positive COVID case in Harrisonburg?
-    first_question(data)
+        first_question(data)
 
 
     # write code to address the following question: Use print() to display your responses.
