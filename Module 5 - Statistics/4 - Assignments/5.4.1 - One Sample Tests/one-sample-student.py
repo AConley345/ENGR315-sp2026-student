@@ -35,7 +35,24 @@ def one_sample_tests(_files: list, _mean: float, _alpha: float, _less_than: bool
     reject_null_hypothesis = []
 
     # YOUR CODE HERE #
+    for file in _files:
+        data = np.loadtxt(file)
 
+    (stat, p_value) =ttest_1samp(data, _mean)
+
+    if _less_than:
+        if stat < 0:
+            one_sided_p = p_value / 2
+        else:
+            one_sided_p = 1 - (p_value / 2)
+    else:
+        if stat > 0:
+            one_sided_p = (p_value / 2)
+        else:
+            one_sided_p = 1 - (p_value / 2)
+
+    if one_sided_p < _alpha:
+        reject_null_hypothesis.append(file)
     # return samples that were rejected
     return reject_null_hypothesis
 
