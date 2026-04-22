@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 """
 Preamble: Load data from source CSV file
 """
-path_to_datafile = "../../data/drop-jump/all_participant_data_rsi.csv"
+path_to_datafile = "C:\\Users\\austi\\OneDrive\\Documents\\GitHub\\ENGR315-sp2026-student\\data\\drop-jump\\all_participant_data_rsi.csv"
 
 ### YOUR CODE HERE
 
@@ -17,6 +17,39 @@ probability distribution function. Include appropriate labels, titles, and legen
 """
 print('-----Question 1-----')
 
+df = pd.read_csv(path_to_datafile)     # read the csv file that is being reference
+print(df.columns)                   # print the data to see what is included
+
+fp_rsi = df['force_plate_rsi']      # making variable for the force plate column from the data
+accel_rsi = df['accelerometer_rsi']         # making varaible for the acceleromter column from the data
+
+mu_fp = np.mean(fp_rsi)             # finding mu for the fp
+std_fp = np.std(fp_rsi)             # finding std for the fp
+
+mu_accel = np.mean(accel_rsi)       # finding mu for the accel data
+std_accel = np.std(accel_rsi)       # finding std for the accel data
+
+print('Force plate Data - mean =', mu_fp, 'std=', std_fp) # print mean and std for the fp
+print('Acceleromter Data - mean =', mu_accel, 'std=', std_fp) # print the mean and std for the acceleromter
+
+print('Accel min =', min(accel_rsi), 'max = ', max(accel_rsi)) # finding max and min of fp to find x range
+print('Forceplate min =', min(fp_rsi), 'max = ', max(fp_rsi))   # finding max and min of fb to find y range
+
+x = np.linspace(start=0, stop=1.5, num=10000)   # x range from 0-1.5 with 10000 points
+
+fp_y = norm.pdf(x, mu_fp, std_accel)    # find norm for fp
+accel_y = norm.pdf(x, mu_fp, std_fp)    # find norm for accel
+
+plt.plot(x, accel_y, label='Forceplate Normal Fit') # plotting the norm for the fp
+plt.plot(x, fp_y, label='Acceleration Normal Fit')  # plotting the norm for the accel
+
+
+plt.title("RSI Normal Distributions") # titling the plot
+plt.xlabel("RSI")   # x-axis label on the plot
+plt.ylabel("Probability")   # y-axis label on the plot
+
+plt.legend() # write legend for the plots were labeled previosely
+plt.show()  # display the plot when code is ran
 ### YOUR CODE HERE
 
 
@@ -28,15 +61,50 @@ a fit or not. Do this for both acceleration and force plate distributions. It is
 """
 print('\n\n-----Question 2-----')
 
+alpha = 0.05
+
+bins = np.linspace(-2, 2, 9)
+
+bins = np.r_[-np.inf, bins, np.inf]
 """
 Acceleration
 """
-### YOUR CODE HERE
 
+observed_counts_accel, observed_edges_accel = np.histogram(accel_rsi, bins=bins, density=False)
+
+expected_prob_accel = np.diff(norm.cdf(bins, loc=mu_accel, scale=std_accel))
+expected_counts_accel = expected_prob_accel * len(accel_rsi)
+
+(chi_accel, p_accel) = chisquare(f_obs=observed_counts_accel, f_exp=expected_counts_accel, ddof=2)
+
+
+print('Acceleration Data:')
+print('Chi2 accelerometer: ', chi_accel, 'p-value accelerometer: ', p_accel)
+if p_accel < alpha:
+    print('Reject null hypothesis. Counts are not equal.')
+else:
+    print('Accept null hypothesis. Counts are equal')
+
+### YOUR CODE HERE
 
 """
 Force Plate
 """
+observed_counts_fp, observed_edges_fp = np.histogram(fp_rsi, bins=bins, density=False)
+
+expected_prob_fp = np.diff(norm.cdf(bins, loc=mu_fp, scale=std_fp))
+expected_counts_fp = expected_prob_fp * len(fp_rsi)
+
+(chi_fp, p_fp) = chisquare(f_obs=observed_counts_fp, f_exp=expected_counts_fp, ddof=2)
+
+
+print('Force plate Data:')
+print('Chi2 stat force plate: ', chi_fp, 'p-value force plate: ', p_fp)
+if p_fp < alpha:
+    print('Reject null hypothesis. Counts are not equal.')
+else:
+    print('Accept null hypothesis. Counts are equal')
+
 ### YOUR CODE HERE
 
 """

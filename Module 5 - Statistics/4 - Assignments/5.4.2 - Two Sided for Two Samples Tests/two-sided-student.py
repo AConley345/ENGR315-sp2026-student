@@ -33,8 +33,17 @@ def two_sided_tests(_files1: list, _files2: list , _alpha: float):
     # list of files that are out of spec
     reject_null_hypothesis = []
 
-    # YOUR CODE HERE #
+    for f1, f2 in zip(_files1, _files2):
+        dataf1 = np.loadtxt(f1)
+        dataf2 = np.loadtxt(f2)
 
+        (t_stat, p_value) = ttest_ind(dataf1, dataf2, alternative='two-sided')
+    
+        if p_value < _alpha:
+            reject_null_hypothesis.append((f1,f2))
+    
+    # YOUR CODE HERE #
+    
     # return samples that were rejected
     return reject_null_hypothesis
 
